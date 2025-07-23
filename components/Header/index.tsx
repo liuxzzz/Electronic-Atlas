@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { ModeToggle } from '@/components/ThemeCheck';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,42 +25,46 @@ const Header: React.FC = () => {
             </Link>
           </div>
 
-          {/* 桌面端导航菜单 */}
-          <nav className='hidden md:flex space-x-8' aria-label='主导航'>
-            <Link
-              href='/'
-              className='text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200'
-            >
-              首页
-            </Link>
-            <Link
-              href='/map'
-              className='text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200'
-            >
-              地图
-            </Link>
-            <Link
-              href='/data'
-              className='text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200'
-            >
-              数据
-            </Link>
-            <Link
-              href='/admin'
-              className='text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200'
-            >
-              管理
-            </Link>
-            <Link
-              href='/about'
-              className='text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200'
-            >
-              关于
-            </Link>
-          </nav>
+          {/* 桌面端导航菜单和主题切换 */}
+          <div className='hidden md:flex items-center space-x-8'>
+            <nav className='flex space-x-8' aria-label='主导航'>
+              <Link
+                href='/'
+                className='text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200'
+              >
+                首页
+              </Link>
+              <Link
+                href='/map'
+                className='text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200'
+              >
+                地图
+              </Link>
+              <Link
+                href='/data'
+                className='text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200'
+              >
+                数据
+              </Link>
+              <Link
+                href='/admin'
+                className='text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200'
+              >
+                管理
+              </Link>
+              <Link
+                href='/about'
+                className='text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200'
+              >
+                关于
+              </Link>
+            </nav>
+            <ModeToggle />
+          </div>
 
-          {/* 移动端菜单按钮 */}
-          <div className='md:hidden'>
+          {/* 移动端菜单按钮和主题切换 */}
+          <div className='md:hidden flex items-center space-x-2'>
+            <ModeToggle />
             <button
               type='button'
               className='inline-flex items-center justify-center p-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-blue-600 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500'
