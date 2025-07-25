@@ -51,7 +51,11 @@ type EChartsOption = echarts.ComposeOption<
 
 const MAP_NAME = 'electronic-atlas';
 
-export default function MapComponent() {
+export default function MapComponent({
+  onClickArea,
+}: {
+  onClickArea: (name: string) => void;
+}) {
   const countrySet = new Set<string>(
     (country as CountryItem[]).flatMap((item) => item.countryName)
   );
@@ -96,7 +100,7 @@ export default function MapComponent() {
       ],
       geo: [
         {
-          name: '奇葩小国',
+          name: '国家',
           type: 'map',
           roam: true,
           zoom: 1.1,
@@ -107,7 +111,9 @@ export default function MapComponent() {
           },
           itemStyle: {
             areaColor: '#eeb8c3',
-            borderWidth: 0,
+            borderWidth: 1,
+            borderColor: '#c7a2ab',
+            borderType: 'solid',
           },
           emphasis: {
             label: {
@@ -116,6 +122,8 @@ export default function MapComponent() {
             },
             itemStyle: {
               areaColor: '#1661ab',
+              borderWidth: 1,
+              borderColor: '#8da4c4',
               shadowColor: 'rgba(0, 0, 0, 0.7)',
               shadowBlur: 10,
             },
@@ -124,7 +132,7 @@ export default function MapComponent() {
       ],
       series: [
         {
-          name: '奇葩小国',
+          name: '国家',
           type: 'map',
           geoIndex: 0,
           selectedMode: false,
@@ -133,6 +141,10 @@ export default function MapComponent() {
         },
       ],
     };
+
+    mapChart.on('click', (params) => {
+      onClickArea(params.name);
+    });
 
     mapChart.setOption(option);
   });
