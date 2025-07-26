@@ -2,15 +2,21 @@
 
 import Map from '@/components/Map';
 import VideoDetailDialog from '@/components/VideoDetailDialog';
+import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 
 export default function MapPage() {
   const [open, setOpen] = useState(false);
   const [countryName, setCountryName] = useState('');
+  const [showHainanCircle, setShowHainanCircle] = useState(false);
 
   const onClickArea = (countryName: string) => {
     setCountryName(countryName);
     setOpen(true);
+  };
+
+  const handleHainanCircleToggle = () => {
+    setShowHainanCircle(!showHainanCircle);
   };
 
   return (
@@ -28,19 +34,27 @@ export default function MapPage() {
           </div>
 
           <div className='flex space-x-2'>
-            <button className='bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors duration-200'>
+            <Button variant='default' size='default'>
               重置视图
-            </button>
-            <button className='border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 px-4 py-2 rounded-lg transition-colors duration-200'>
+            </Button>
+            <Button variant='outline' size='default'>
               全屏模式
-            </button>
+            </Button>
+            <Button
+              variant='default'
+              size='default'
+              className={`${showHainanCircle ? 'bg-red-600 hover:bg-red-700' : 'bg-green-600 hover:bg-green-700'} text-white shadow-xs`}
+              onClick={handleHainanCircleToggle}
+            >
+              {showHainanCircle ? '隐藏圆圈' : '海南岛中心圈'}
+            </Button>
           </div>
         </div>
       </div>
 
       {/* 地图区域 */}
       <div className='flex-1 relative'>
-        <Map onClickArea={onClickArea} />
+        <Map onClickArea={onClickArea} showHainanCircle={showHainanCircle} />
       </div>
 
       <VideoDetailDialog
