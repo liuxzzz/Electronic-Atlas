@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ModeToggle } from '@/components/ThemeCheck';
 
 const Header: React.FC = () => {
@@ -19,9 +20,17 @@ const Header: React.FC = () => {
           <div className='flex-shrink-0'>
             <Link
               href='/'
-              className='text-2xl font-bold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200'
+              className='flex items-center space-x-3 text-gray-900 dark:text-white hover:opacity-80 transition-opacity duration-200'
             >
-              Electronic Atlas
+              <Image
+                src='/image/logo.png'
+                alt='Electronic Atlas Logo'
+                width={40}
+                height={40}
+                className='w-10 h-10 object-contain'
+                priority
+              />
+              <span className='text-2xl font-bold'>Electronic Atlas</span>
             </Link>
           </div>
 

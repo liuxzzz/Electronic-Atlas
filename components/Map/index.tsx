@@ -22,8 +22,8 @@ import type {
 } from 'echarts/charts';
 import { CanvasRenderer } from 'echarts/renderers';
 import { useEffect } from 'react';
-import usaJson from '@/public/world.geo.json';
-import country from '@/public/country.json';
+import usaJson from '@/public/data/world.geo.json';
+import country from '@/public/data/country.json';
 
 // 定义国家数据类型
 type CountryItem = {

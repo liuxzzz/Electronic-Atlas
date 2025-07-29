@@ -8,6 +8,11 @@ export const metadata: Metadata = {
   title: 'Electronic Atlas',
   description:
     '一个现代化的电子地图集应用，为您提供详细的地理信息和交互式地图体验',
+  icons: {
+    icon: '/image/logo.png',
+    shortcut: '/image/logo.png',
+    apple: '/image/logo.png',
+  },
 };
 
 export default function RootLayout({
