@@ -29,7 +29,7 @@ export async function findCountryByName(
 ): Promise<Country | null> {
   try {
     // 动态导入country.json数据
-    const countryData = await import('../public/country.json');
+    const countryData = await import('../public/data/country.json');
     const countries = countryData.default as Country[];
 
     // 查找匹配的国家

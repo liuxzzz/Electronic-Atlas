@@ -3,6 +3,7 @@
 import Map from '@/components/Map';
 import VideoDetailDialog from '@/components/VideoDetailDialog';
 import { Button } from '@/components/ui/button';
+import { findCountryByName } from '@/lib/utils';
 import { useState } from 'react';
 
 export default function MapPage() {
@@ -10,9 +11,15 @@ export default function MapPage() {
   const [countryName, setCountryName] = useState('');
   const [showHainanCircle, setShowHainanCircle] = useState(false);
 
-  const onClickArea = (countryName: string) => {
-    setCountryName(countryName);
-    setOpen(true);
+  const onClickArea = async (countryName: string) => {
+    // 先查询数据库中是否有该国家的信息
+    const countryData = await findCountryByName(countryName);
+
+    if (countryData) {
+      // 如果找到数据，则打开弹窗
+      setCountryName(countryName);
+      setOpen(true);
+    }
   };
 
   const handleHainanCircleToggle = () => {
