@@ -5,45 +5,43 @@ const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className='bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 mt-auto'>
-      <div className='max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8'>
-        <div className='grid grid-cols-1 md:grid-cols-4 gap-8'>
+    <footer className='border-t border-border mt-auto bg-background'>
+      <div className='max-w-6xl mx-auto py-16 px-6'>
+        <div className='grid grid-cols-1 md:grid-cols-4 gap-8 mb-12'>
           {/* 品牌信息 */}
           <div className='md:col-span-2'>
-            <h3 className='text-lg font-semibold text-gray-900 dark:text-white mb-4'>
+            <h3 className='text-lg font-semibold text-foreground mb-4'>
               Electronic Atlas
             </h3>
-            <p className='text-gray-600 dark:text-gray-400 text-sm leading-6 max-w-md'>
-              一个现代化的电子地图集应用，为您提供详细的地理信息和交互式地图体验。
+            <p className='text-muted-foreground text-sm leading-relaxed max-w-md'>
+              现代化的电子地图集应用，为地理探索者提供专业的交互式地图体验和数据可视化工具。
             </p>
           </div>
 
-          {/* 快速链接 */}
+          {/* 导航链接 */}
           <div>
-            <h4 className='text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4'>
-              快速链接
-            </h4>
+            <h4 className='text-sm font-medium text-foreground mb-4'>产品</h4>
             <ul className='space-y-3'>
               <li>
                 <Link
-                  href='/'
-                  className='text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200'
+                  href='/map'
+                  className='text-sm text-muted-foreground hover:text-foreground transition-colors duration-200'
                 >
-                  首页
+                  交互式地图
                 </Link>
               </li>
               <li>
                 <Link
-                  href='/map'
-                  className='text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200'
+                  href='/data'
+                  className='text-sm text-muted-foreground hover:text-foreground transition-colors duration-200'
                 >
-                  地图
+                  数据分析
                 </Link>
               </li>
               <li>
                 <Link
                   href='/about'
-                  className='text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200'
+                  className='text-sm text-muted-foreground hover:text-foreground transition-colors duration-200'
                 >
                   关于我们
                 </Link>
@@ -51,24 +49,22 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* 联系信息 */}
+          {/* 资源链接 */}
           <div>
-            <h4 className='text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4'>
-              联系我们
-            </h4>
+            <h4 className='text-sm font-medium text-foreground mb-4'>资源</h4>
             <ul className='space-y-3'>
               <li>
                 <a
                   href='mailto:contact@electronic-atlas.com'
-                  className='text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200'
+                  className='text-sm text-muted-foreground hover:text-foreground transition-colors duration-200'
                 >
-                  邮箱联系
+                  联系我们
                 </a>
               </li>
               <li>
                 <Link
                   href='/privacy'
-                  className='text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200'
+                  className='text-sm text-muted-foreground hover:text-foreground transition-colors duration-200'
                 >
                   隐私政策
                 </Link>
@@ -76,7 +72,7 @@ const Footer: React.FC = () => {
               <li>
                 <Link
                   href='/terms'
-                  className='text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200'
+                  className='text-sm text-muted-foreground hover:text-foreground transition-colors duration-200'
                 >
                   服务条款
                 </Link>
@@ -85,17 +81,17 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* 社交媒体链接 */}
-        <div className='mt-8 pt-8 border-t border-gray-200 dark:border-gray-700'>
-          <div className='flex items-center justify-between'>
-            <p className='text-sm text-gray-500 dark:text-gray-400'>
+        {/* 底部信息 */}
+        <div className='pt-8 border-t border-border'>
+          <div className='flex flex-col md:flex-row items-center justify-between gap-4'>
+            <p className='text-sm text-muted-foreground'>
               © {currentYear} Electronic Atlas. 保留所有权利。
             </p>
 
-            <div className='flex space-x-6'>
+            <div className='flex items-center space-x-4'>
               <a
                 href='https://github.com'
-                className='text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-200'
+                className='text-muted-foreground hover:text-foreground transition-colors duration-200'
                 aria-label='GitHub'
                 target='_blank'
                 rel='noopener noreferrer'
@@ -116,7 +112,7 @@ const Footer: React.FC = () => {
 
               <a
                 href='https://twitter.com'
-                className='text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-200'
+                className='text-muted-foreground hover:text-foreground transition-colors duration-200'
                 aria-label='Twitter'
                 target='_blank'
                 rel='noopener noreferrer'
@@ -133,7 +129,7 @@ const Footer: React.FC = () => {
 
               <a
                 href='https://linkedin.com'
-                className='text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-200'
+                className='text-muted-foreground hover:text-foreground transition-colors duration-200'
                 aria-label='LinkedIn'
                 target='_blank'
                 rel='noopener noreferrer'

@@ -1,31 +1,53 @@
+'use client';
+
 import Link from 'next/link';
+import { useState } from 'react';
+import MapComponent from '@/components/Map';
 
 export default function Home() {
+  const [selectedCountry, setSelectedCountry] = useState<string>('');
+
+  const handleClickArea = (name: string) => {
+    setSelectedCountry(name);
+    // 这里可以添加更多交互逻辑，比如显示国家详情等
+    console.log('选中国家:', name);
+  };
+
   return (
-    <div className='min-h-screen'>
+    <div className='min-h-screen bg-background'>
       {/* 英雄区域 */}
-      <section className='bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 py-20'>
-        <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-          <div className='text-center'>
-            <h1 className='text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6'>
-              欢迎来到
-              <span className='text-blue-600 dark:text-blue-400 block'>
-                Electronic Atlas
-              </span>
+      <section className='pt-24 pb-32 px-6'>
+        <div className='max-w-6xl mx-auto'>
+          <div className='text-center max-w-4xl mx-auto'>
+            <h1 className='text-5xl md:text-7xl font-semibold tracking-tight text-foreground mb-8 leading-tight'>
+              <span className='text-primary block'>探索世界电子地图集</span>
             </h1>
-            <p className='text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto'>
-              探索世界的全新方式，通过交互式电子地图集发现地理之美
+            <p className='text-xl md:text-2xl text-muted-foreground mb-12 leading-relaxed'>
+              基于B站up主王晓的精彩视频内容整合，通过交互式地图展示当前的国家和地区都收录了哪些视频内容。
             </p>
-            <div className='flex flex-col sm:flex-row gap-4 justify-center'>
+            <div className='flex flex-col sm:flex-row gap-4 justify-center items-center'>
               <Link
                 href='/map'
-                className='bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-8 rounded-lg transition-colors duration-200 text-lg'
+                className='bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-3 px-6 rounded-xl transition-all duration-200 text-base inline-flex items-center gap-2 shadow-sm hover:shadow-md'
               >
-                开始探索地图
+                开始探索
+                <svg
+                  className='w-4 h-4'
+                  fill='none'
+                  stroke='currentColor'
+                  viewBox='0 0 24 24'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth={2}
+                    d='M13 7l5 5-5 5M6 12h12'
+                  />
+                </svg>
               </Link>
               <Link
                 href='/about'
-                className='border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-semibold py-4 px-8 rounded-lg transition-colors duration-200 text-lg'
+                className='text-muted-foreground hover:text-foreground font-medium py-3 px-6 rounded-xl transition-all duration-200 text-base hover:bg-accent'
               >
                 了解更多
               </Link>
@@ -34,147 +56,127 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 功能特性区域 */}
-      <section className='py-20 bg-white dark:bg-gray-900'>
-        <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-          <div className='text-center mb-16'>
-            <h2 className='text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4'>
-              强大功能
+      {/* 交互式地图区域 */}
+      <section className='py-24 px-6 bg-muted/30'>
+        <div className='max-w-6xl mx-auto'>
+          <div className='text-center mb-12'>
+            <h2 className='text-3xl md:text-4xl font-semibold tracking-tight text-foreground mb-4'>
+              交互式世界地图
             </h2>
-            <p className='text-lg text-gray-600 dark:text-gray-300'>
-              为您提供最完整的地理信息体验
+            <p className='text-lg text-muted-foreground max-w-2xl mx-auto'>
+              点击地图上的任意国家，探索当前电子地图册都收集了哪些国家和地区。
             </p>
+            {selectedCountry && (
+              <div className='mt-4 p-3 bg-primary/10 rounded-lg inline-block'>
+                <span className='text-primary font-medium'>
+                  当前选中: {selectedCountry}
+                </span>
+              </div>
+            )}
           </div>
 
-          <div className='grid md:grid-cols-3 gap-8'>
-            <div className='text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-xl'>
-              <div className='bg-blue-100 dark:bg-blue-900 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4'>
-                <svg
-                  className='w-8 h-8 text-blue-600 dark:text-blue-400'
-                  fill='none'
-                  stroke='currentColor'
-                  viewBox='0 0 24 24'
-                >
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    strokeWidth={2}
-                    d='M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7'
-                  />
-                </svg>
-              </div>
-              <h3 className='text-xl font-semibold text-gray-900 dark:text-white mb-2'>
-                交互式地图
-              </h3>
-              <p className='text-gray-600 dark:text-gray-300'>
-                高清晰度的世界地图，支持缩放和平移操作
-              </p>
-            </div>
-
-            <div className='text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-xl'>
-              <div className='bg-green-100 dark:bg-green-900 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4'>
-                <svg
-                  className='w-8 h-8 text-green-600 dark:text-green-400'
-                  fill='none'
-                  stroke='currentColor'
-                  viewBox='0 0 24 24'
-                >
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    strokeWidth={2}
-                    d='M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
-                  />
-                </svg>
-              </div>
-              <h3 className='text-xl font-semibold text-gray-900 dark:text-white mb-2'>
-                详细信息
-              </h3>
-              <p className='text-gray-600 dark:text-gray-300'>
-                提供国家地区的详细地理和文化信息
-              </p>
-            </div>
-
-            <div className='text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-xl'>
-              <div className='bg-purple-100 dark:bg-purple-900 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4'>
-                <svg
-                  className='w-8 h-8 text-purple-600 dark:text-purple-400'
-                  fill='none'
-                  stroke='currentColor'
-                  viewBox='0 0 24 24'
-                >
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    strokeWidth={2}
-                    d='M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z'
-                  />
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    strokeWidth={2}
-                    d='M15 12a3 3 0 11-6 0 3 3 0 016 0z'
-                  />
-                </svg>
-              </div>
-              <h3 className='text-xl font-semibold text-gray-900 dark:text-white mb-2'>
-                现代设计
-              </h3>
-              <p className='text-gray-600 dark:text-gray-300'>
-                响应式设计，支持深色模式和移动设备
-              </p>
+          <div className='bg-card rounded-2xl border border-border overflow-hidden shadow-lg'>
+            <div className='h-[600px] w-full'>
+              <MapComponent onClickArea={handleClickArea} />
             </div>
           </div>
         </div>
       </section>
 
       {/* 统计数据区域 */}
-      <section className='py-20 bg-gray-50 dark:bg-gray-800'>
-        <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-          <div className='grid md:grid-cols-4 gap-8 text-center'>
-            <div>
-              <div className='text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2'>
+      <section className='py-24 px-6'>
+        <div className='max-w-6xl mx-auto'>
+          <div className='text-center mb-16'>
+            <h2 className='text-3xl md:text-4xl font-semibold tracking-tight text-foreground mb-4'>
+              跟随王晓的足迹
+            </h2>
+            <p className='text-lg text-muted-foreground max-w-2xl mx-auto'>
+              基于优质视频内容整合的地理文化知识库
+            </p>
+          </div>
+          <div className='grid md:grid-cols-4 gap-8'>
+            <div className='text-center'>
+              <div className='text-4xl md:text-5xl font-bold text-primary mb-2'>
                 195
               </div>
-              <div className='text-gray-600 dark:text-gray-300'>个国家</div>
+              <div className='text-muted-foreground font-medium'>
+                个国家和地区
+              </div>
             </div>
-            <div>
-              <div className='text-4xl font-bold text-green-600 dark:text-green-400 mb-2'>
+            <div className='text-center'>
+              <div className='text-4xl md:text-5xl font-bold text-primary mb-2'>
                 7
               </div>
-              <div className='text-gray-600 dark:text-gray-300'>大洲</div>
+              <div className='text-muted-foreground font-medium'>大洲覆盖</div>
             </div>
-            <div>
-              <div className='text-4xl font-bold text-purple-600 dark:text-purple-400 mb-2'>
-                ∞
+            <div className='text-center'>
+              <div className='text-4xl md:text-5xl font-bold text-primary mb-2'>
+                100+
               </div>
-              <div className='text-gray-600 dark:text-gray-300'>种可能</div>
+              <div className='text-muted-foreground font-medium'>
+                精彩视频内容
+              </div>
             </div>
-            <div>
-              <div className='text-4xl font-bold text-orange-600 dark:text-orange-400 mb-2'>
+            <div className='text-center'>
+              <div className='text-4xl md:text-5xl font-bold text-primary mb-2'>
                 24/7
               </div>
-              <div className='text-gray-600 dark:text-gray-300'>随时探索</div>
+              <div className='text-muted-foreground font-medium'>随时探索</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* 行动号召区域 */}
-      <section className='bg-blue-600 dark:bg-blue-800 py-16'>
-        <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center'>
-          <h2 className='text-3xl md:text-4xl font-bold text-white mb-4'>
-            准备开始您的地理探索之旅了吗？
+      <section className='py-24 px-6 bg-muted/30'>
+        <div className='max-w-4xl mx-auto text-center'>
+          <h2 className='text-3xl md:text-5xl font-semibold tracking-tight text-foreground mb-6 leading-tight'>
+            跟随小王Albert
+            <span className='text-primary block'>开启世界探索之旅</span>
           </h2>
-          <p className='text-xl text-blue-100 mb-8'>
-            立即体验我们的交互式地图功能
+          <p className='text-xl text-muted-foreground mb-10 leading-relaxed'>
+            通过交互式地图体验优质地理文化内容，发现世界各地的精彩故事
           </p>
-          <Link
-            href='/map'
-            className='bg-white text-blue-600 hover:bg-gray-100 font-semibold py-4 px-8 rounded-lg transition-colors duration-200 text-lg inline-block'
-          >
-            立即开始探索
-          </Link>
+          <div className='flex flex-col sm:flex-row gap-4 justify-center items-center'>
+            <Link
+              href='/map'
+              className='bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-4 px-8 rounded-xl transition-all duration-200 text-lg inline-flex items-center gap-3 shadow-sm hover:shadow-md'
+            >
+              立即开始探索
+              <svg
+                className='w-5 h-5'
+                fill='none'
+                stroke='currentColor'
+                viewBox='0 0 24 24'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth={2}
+                  d='M13 7l5 5-5 5M6 12h12'
+                />
+              </svg>
+            </Link>
+            <Link
+              href='/data'
+              className='text-muted-foreground hover:text-foreground font-medium py-4 px-8 rounded-xl transition-all duration-200 text-lg hover:bg-accent inline-flex items-center gap-2'
+            >
+              查看数据
+              <svg
+                className='w-4 h-4'
+                fill='none'
+                stroke='currentColor'
+                viewBox='0 0 24 24'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth={2}
+                  d='M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z'
+                />
+              </svg>
+            </Link>
+          </div>
         </div>
       </section>
     </div>
