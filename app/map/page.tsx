@@ -9,7 +9,6 @@ import { useState } from 'react';
 export default function MapPage() {
   const [open, setOpen] = useState(false);
   const [countryName, setCountryName] = useState('');
-  const [showHainanCircle, setShowHainanCircle] = useState(false);
 
   const onClickArea = async (countryName: string) => {
     // 先查询数据库中是否有该国家的信息
@@ -20,10 +19,6 @@ export default function MapPage() {
       setCountryName(countryName);
       setOpen(true);
     }
-  };
-
-  const handleHainanCircleToggle = () => {
-    setShowHainanCircle(!showHainanCircle);
   };
 
   return (
@@ -47,21 +42,13 @@ export default function MapPage() {
             <Button variant='outline' size='default'>
               全屏模式
             </Button>
-            <Button
-              variant='default'
-              size='default'
-              className={`${showHainanCircle ? 'bg-red-600 hover:bg-red-700' : 'bg-green-600 hover:bg-green-700'} text-white shadow-xs`}
-              onClick={handleHainanCircleToggle}
-            >
-              {showHainanCircle ? '隐藏圆圈' : '海南岛中心圈'}
-            </Button>
           </div>
         </div>
       </div>
 
       {/* 地图区域 */}
       <div className='flex-1 relative'>
-        <Map onClickArea={onClickArea} showHainanCircle={showHainanCircle} />
+        <Map onClickArea={onClickArea} />
       </div>
 
       <VideoDetailDialog

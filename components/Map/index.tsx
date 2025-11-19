@@ -14,14 +14,10 @@ import type {
   GeoComponentOption,
 } from 'echarts/components';
 
-import { MapChart, ScatterChart, LinesChart } from 'echarts/charts';
-import type {
-  MapSeriesOption,
-  ScatterSeriesOption,
-  LinesSeriesOption,
-} from 'echarts/charts';
+import { MapChart } from 'echarts/charts';
+import type { MapSeriesOption } from 'echarts/charts';
 import { CanvasRenderer } from 'echarts/renderers';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import usaJson from '@/public/data/world.geo.json';
 import country from '@/public/data/country.json';
 
@@ -35,8 +31,6 @@ echarts.use([
   VisualMapComponent,
   GeoComponent,
   MapChart,
-  ScatterChart,
-  LinesChart,
   CanvasRenderer,
 ]);
 
@@ -45,55 +39,25 @@ type EChartsOption = echarts.ComposeOption<
   | VisualMapComponentOption
   | GeoComponentOption
   | MapSeriesOption
-  | ScatterSeriesOption
-  | LinesSeriesOption
 >;
 
 const MAP_NAME = 'electronic-atlas';
 
-// 海南省中心坐标 (经度, 纬度)
-const HAINAN_CENTER = [110.33, 19.03];
-
-// 计算4000公里半径在地图上对应的经纬度偏移
-const RADIUS_KM = 4000;
-// 1度纬度 ≈ 111公里，所以4000公里 ≈ 36度
-// 在海南纬度(19°N)处，1度经度 ≈ 111 * cos(19°) ≈ 105公里
-const LAT_RADIUS = RADIUS_KM / 111; // 纬度方向半径：约36度
-const LNG_RADIUS =
-  RADIUS_KM / (111 * Math.cos((HAINAN_CENTER[1] * Math.PI) / 180)); // 经度方向半径：约38度
-
-// 生成圆周上的点 - 考虑地球曲率的椭圆形
-const generateCirclePoints = (
-  centerLng: number,
-  centerLat: number,
-  lngRadius: number,
-  latRadius: number,
-  pointCount = 64
-) => {
-  const points = [];
-  for (let i = 0; i <= pointCount; i++) {
-    const angle = (2 * Math.PI * i) / pointCount;
-    const lng = centerLng + lngRadius * Math.cos(angle);
-    const lat = centerLat + latRadius * Math.sin(angle);
-    points.push([lng, lat]);
-  }
-  return points;
-};
-
 export default function MapComponent({
   onClickArea,
-  showHainanCircle = false,
 }: {
   onClickArea: (name: string) => void;
-  showHainanCircle?: boolean;
 }) {
-  const countrySet = new Set<string>(
-    (country as CountryItem[]).flatMap((item) => item.countryName)
-  );
+  const countryList = useMemo(() => {
+    const countrySet = new Set<string>(
+      (country as CountryItem[]).flatMap((item) => item.countryName)
+    );
 
-  const countryList = Array.from(countrySet).map((item) => {
-    return { name: item, value: 1 };
-  });
+    return Array.from(countrySet).map((item) => ({
+      name: item,
+      value: 1,
+    }));
+  }, []);
 
   useEffect(() => {
     const chartDom = document.getElementById('map');
@@ -108,85 +72,6 @@ export default function MapComponent({
       MAP_NAME,
       usaJson as unknown as Parameters<typeof echarts.registerMap>[1]
     );
-
-    // 生成圆周线条数据
-    const circlePoints = generateCirclePoints(
-      HAINAN_CENTER[0],
-      HAINAN_CENTER[1],
-      LNG_RADIUS,
-      LAT_RADIUS
-    );
-
-    const circleLineData = [];
-    for (let i = 0; i < circlePoints.length - 1; i++) {
-      circleLineData.push({
-        coords: [circlePoints[i], circlePoints[i + 1]],
-      });
-    }
-
-    const baseSeries: (
-      | MapSeriesOption
-      | ScatterSeriesOption
-      | LinesSeriesOption
-    )[] = [
-      {
-        name: '国家',
-        type: 'map',
-        geoIndex: 0,
-        selectedMode: false,
-        map: MAP_NAME,
-        data: countryList,
-      },
-    ];
-
-    // 如果需要显示海南圆圈，添加相关系列
-    if (showHainanCircle) {
-      // 添加圆心点
-      baseSeries.push({
-        name: '海南中心',
-        type: 'scatter',
-        coordinateSystem: 'geo',
-        geoIndex: 0,
-        symbol: 'circle',
-        symbolSize: 8,
-        itemStyle: {
-          color: '#ff6b6b',
-          borderColor: '#fff',
-          borderWidth: 2,
-        },
-        emphasis: {
-          scale: false,
-        },
-        data: [
-          {
-            name: '海南省',
-            value: [...HAINAN_CENTER, 1],
-          },
-        ],
-        silent: true,
-      });
-
-      // 添加圆周线条
-      baseSeries.push({
-        name: '4000公里半径',
-        type: 'lines',
-        coordinateSystem: 'geo',
-        geoIndex: 0,
-        lineStyle: {
-          color: '#ff6b6b',
-          width: 2,
-          type: 'dashed',
-          opacity: 0.8,
-        },
-        emphasis: {
-          lineStyle: {
-            width: 2,
-          },
-        },
-        data: circleLineData,
-        silent: true,
-      });
-    }
 
     const option: EChartsOption = {
       visualMap: [
@@ -240,7 +125,16 @@ export default function MapComponent({
           },
         },
       ],
-      series: baseSeries,
+      series: [
+        {
+          name: '国家',
+          type: 'map',
+          geoIndex: 0,
+          selectedMode: false,
+          map: MAP_NAME,
+          data: countryList,
+        },
+      ],
     };
 
     mapChart.on('click', (params) => {
@@ -253,7 +147,7 @@ export default function MapComponent({
     return () => {
       mapChart.dispose();
     };
-  }, [onClickArea, showHainanCircle]);
+  }, [countryList, onClickArea]);
 
   return <div id='map' className='w-full h-full'></div>;
 }

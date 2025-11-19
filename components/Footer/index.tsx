@@ -5,27 +5,27 @@ const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className='border-t border-border mt-auto bg-background'>
-      <div className='max-w-6xl mx-auto py-16 px-6'>
-        <div className='grid grid-cols-1 md:grid-cols-4 gap-8 mb-12'>
-          {/* 品牌信息 */}
+    <footer className='border-t border-[#e8eaed] dark:border-[#3c4043] mt-auto bg-[#f8f9fa] dark:bg-[#1a1a1a]'>
+      <div className='max-w-5xl mx-auto py-12 px-6'>
+        <div className='grid grid-cols-1 md:grid-cols-4 gap-8 mb-10'>
+          {/* 品牌信息 - Google 风格 */}
           <div className='md:col-span-2'>
-            <h3 className='text-lg font-semibold text-foreground mb-4'>
+            <h3 className='text-lg font-normal text-[#202124] dark:text-[#e8eaed] mb-3'>
               Electronic Atlas
             </h3>
-            <p className='text-muted-foreground text-sm leading-relaxed max-w-md'>
+            <p className='text-[#5f6368] dark:text-[#9aa0a6] text-sm leading-relaxed max-w-md font-light'>
               现代化的电子地图集应用，为地理探索者提供专业的交互式地图体验和数据可视化工具。
             </p>
           </div>
 
-          {/* 导航链接 */}
+          {/* 导航链接 - Google 风格 */}
           <div>
-            <h4 className='text-sm font-medium text-foreground mb-4'>产品</h4>
-            <ul className='space-y-3'>
+            <h4 className='text-sm font-medium text-[#202124] dark:text-[#e8eaed] mb-3'>产品</h4>
+            <ul className='space-y-2'>
               <li>
                 <Link
                   href='/map'
-                  className='text-sm text-muted-foreground hover:text-foreground transition-colors duration-200'
+                  className='text-sm text-[#5f6368] dark:text-[#9aa0a6] hover:text-[#202124] dark:hover:text-[#e8eaed] transition-colors duration-200'
                 >
                   交互式地图
                 </Link>
@@ -33,7 +33,7 @@ const Footer: React.FC = () => {
               <li>
                 <Link
                   href='/data'
-                  className='text-sm text-muted-foreground hover:text-foreground transition-colors duration-200'
+                  className='text-sm text-[#5f6368] dark:text-[#9aa0a6] hover:text-[#202124] dark:hover:text-[#e8eaed] transition-colors duration-200'
                 >
                   数据分析
                 </Link>
@@ -41,7 +41,7 @@ const Footer: React.FC = () => {
               <li>
                 <Link
                   href='/about'
-                  className='text-sm text-muted-foreground hover:text-foreground transition-colors duration-200'
+                  className='text-sm text-[#5f6368] dark:text-[#9aa0a6] hover:text-[#202124] dark:hover:text-[#e8eaed] transition-colors duration-200'
                 >
                   关于我们
                 </Link>
@@ -49,14 +49,14 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* 资源链接 */}
+          {/* 资源链接 - Google 风格 */}
           <div>
-            <h4 className='text-sm font-medium text-foreground mb-4'>资源</h4>
-            <ul className='space-y-3'>
+            <h4 className='text-sm font-medium text-[#202124] dark:text-[#e8eaed] mb-3'>资源</h4>
+            <ul className='space-y-2'>
               <li>
                 <a
                   href='mailto:contact@electronic-atlas.com'
-                  className='text-sm text-muted-foreground hover:text-foreground transition-colors duration-200'
+                  className='text-sm text-[#5f6368] dark:text-[#9aa0a6] hover:text-[#202124] dark:hover:text-[#e8eaed] transition-colors duration-200'
                 >
                   联系我们
                 </a>
@@ -64,7 +64,7 @@ const Footer: React.FC = () => {
               <li>
                 <Link
                   href='/privacy'
-                  className='text-sm text-muted-foreground hover:text-foreground transition-colors duration-200'
+                  className='text-sm text-[#5f6368] dark:text-[#9aa0a6] hover:text-[#202124] dark:hover:text-[#e8eaed] transition-colors duration-200'
                 >
                   隐私政策
                 </Link>
@@ -72,7 +72,7 @@ const Footer: React.FC = () => {
               <li>
                 <Link
                   href='/terms'
-                  className='text-sm text-muted-foreground hover:text-foreground transition-colors duration-200'
+                  className='text-sm text-[#5f6368] dark:text-[#9aa0a6] hover:text-[#202124] dark:hover:text-[#e8eaed] transition-colors duration-200'
                 >
                   服务条款
                 </Link>
@@ -81,17 +81,17 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* 底部信息 */}
-        <div className='pt-8 border-t border-border'>
+        {/* 底部信息 - Google 风格 */}
+        <div className='pt-6 border-t border-[#e8eaed] dark:border-[#3c4043]'>
           <div className='flex flex-col md:flex-row items-center justify-between gap-4'>
-            <p className='text-sm text-muted-foreground'>
+            <p className='text-sm text-[#5f6368] dark:text-[#9aa0a6]'>
               © {currentYear} Electronic Atlas. 保留所有权利。
             </p>
 
-            <div className='flex items-center space-x-4'>
+            <div className='flex items-center space-x-3'>
               <a
                 href='https://github.com'
-                className='text-muted-foreground hover:text-foreground transition-colors duration-200'
+                className='text-[#5f6368] dark:text-[#9aa0a6] hover:text-[#202124] dark:hover:text-[#e8eaed] transition-colors duration-200 p-2 rounded-full hover:bg-[#f1f3f4] dark:hover:bg-[#2d2d2d]'
                 aria-label='GitHub'
                 target='_blank'
                 rel='noopener noreferrer'
@@ -112,7 +112,7 @@ const Footer: React.FC = () => {
 
               <a
                 href='https://twitter.com'
-                className='text-muted-foreground hover:text-foreground transition-colors duration-200'
+                className='text-[#5f6368] dark:text-[#9aa0a6] hover:text-[#202124] dark:hover:text-[#e8eaed] transition-colors duration-200 p-2 rounded-full hover:bg-[#f1f3f4] dark:hover:bg-[#2d2d2d]'
                 aria-label='Twitter'
                 target='_blank'
                 rel='noopener noreferrer'
@@ -129,7 +129,7 @@ const Footer: React.FC = () => {
 
               <a
                 href='https://linkedin.com'
-                className='text-muted-foreground hover:text-foreground transition-colors duration-200'
+                className='text-[#5f6368] dark:text-[#9aa0a6] hover:text-[#202124] dark:hover:text-[#e8eaed] transition-colors duration-200 p-2 rounded-full hover:bg-[#f1f3f4] dark:hover:bg-[#2d2d2d]'
                 aria-label='LinkedIn'
                 target='_blank'
                 rel='noopener noreferrer'
