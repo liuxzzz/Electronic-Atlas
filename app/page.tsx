@@ -6,36 +6,36 @@ import { useMemo } from 'react';
 import ThreeBackground from '@/components/ThreeBackground';
 
 const heroStats = [
-  { label: '覆盖国家/地区', value: '230+' },
+  // { label: '覆盖国家/地区', value: '230+' },
   { label: '实时更新', value: '24H' },
 ];
 
 // 视频合集数据
 const collections = [
-  {
-    id: 'world-geography',
-    title: '世界地理系列',
-    description: '探索世界各国的地理特征、历史文化与经济发展',
-    videoCount: 45,
-    coverImage: '/image/preview-map.png',
-    color: 'from-blue-500 to-cyan-500',
-  },
-  {
-    id: 'asia-pacific',
-    title: '亚太地区专题',
-    description: '深入了解亚太地区各国的政治、经济与社会发展',
-    videoCount: 28,
-    coverImage: '/image/preview-map.png',
-    color: 'from-purple-500 to-pink-500',
-  },
-  {
-    id: 'europe-series',
-    title: '欧洲国家解析',
-    description: '欧洲各国的历史变迁、文化传统与现代发展',
-    videoCount: 32,
-    coverImage: '/image/preview-map.png',
-    color: 'from-green-500 to-emerald-500',
-  },
+  // {
+  //   id: 'world-geography',
+  //   title: '世界地理系列',
+  //   description: '探索世界各国的地理特征、历史文化与经济发展',
+  //   videoCount: 45,
+  //   coverImage: '/image/preview-map.png',
+  //   color: 'from-blue-500 to-cyan-500',
+  // },
+  // {
+  //   id: 'asia-pacific',
+  //   title: '亚太地区专题',
+  //   description: '深入了解亚太地区各国的政治、经济与社会发展',
+  //   videoCount: 28,
+  //   coverImage: '/image/preview-map.png',
+  //   color: 'from-purple-500 to-pink-500',
+  // },
+  // {
+  //   id: 'europe-series',
+  //   title: '欧洲国家解析',
+  //   description: '欧洲各国的历史变迁、文化传统与现代发展',
+  //   videoCount: 32,
+  //   coverImage: '/image/preview-map.png',
+  //   color: 'from-green-500 to-emerald-500',
+  // },
 ];
 
 
@@ -150,63 +150,18 @@ export default function Home() {
           </div>
  
           {/* 视频合集展示区域 */}
-          <section className='mt-20'>
+          {/* <section className='mt-20'>
             <div className='text-center mb-12'>
               <h2 className='text-3xl font-semibold text-slate-900 dark:text-white mb-3'>
                 视频合集
               </h2>
               <p className='text-base text-slate-600 dark:text-slate-400'>
-                探索不同主题的精选视频系列
+                //TODO
               </p>
             </div>
 
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
-              {collections.map((collection) => (
-                <Link
-                  key={collection.id}
-                  href={`/collection/${collection.id}`}
-                  className='group block'
-                >
-                  <div className='relative h-full rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1'>
-                    {/* 渐变背景装饰 */}
-                    <div className={`absolute top-0 left-0 right-0 h-2 bg-gradient-to-r ${collection.color}`}></div>
-                    
-                    {/* 封面图片 */}
-                    <div className='relative h-48 overflow-hidden bg-slate-100 dark:bg-slate-800'>
-                      <Image
-                        src={collection.coverImage}
-                        alt={collection.title}
-                        fill
-                        className='object-cover transition-transform duration-300 group-hover:scale-105'
-                      />
-                      {/* 视频数量标签 */}
-                      <div className='absolute top-3 right-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-sm text-white text-xs font-medium'>
-                        {collection.videoCount} 个视频
-                      </div>
-                    </div>
-
-                    {/* 内容区域 */}
-                    <div className='p-6'>
-                      <h3 className='text-lg font-semibold text-slate-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors'>
-                        {collection.title}
-                      </h3>
-                      <p className='text-sm text-slate-600 dark:text-slate-400 line-clamp-2 leading-relaxed'>
-                        {collection.description}
-                      </p>
-
-                      {/* 查看更多按钮 */}
-                      <div className='mt-4 flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors'>
-                        <span>查看合集</span>
-                        <svg className='w-4 h-4 ml-1 transition-transform group-hover:translate-x-1' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
-                          <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M9 5l7 7-7 7' />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </section>
+           
+          </section> */}
           
         </main>
       </div>

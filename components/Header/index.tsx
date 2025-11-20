@@ -90,14 +90,14 @@ const Header: React.FC = () => {
                 关于
               </Link>
             </nav>
-            <div className='ml-2'>
+            {/* <div className='ml-2'>
               <ModeToggle />
-            </div>
+            </div> */}
           </div>
 
           {/* 移动端菜单按钮和主题切换 - Google 风格 */}
           <div className='md:hidden flex items-center space-x-2'>
-            <ModeToggle />
+            {/* <ModeToggle /> */}
             <button
               type='button'
               className='inline-flex items-center justify-center p-2 rounded-full text-[#5f6368] dark:text-[#9aa0a6] hover:bg-[#f1f3f4] dark:hover:bg-[#2d2d2d] focus:outline-none focus:ring-2 focus:ring-[#4285f4] transition-colors duration-200'

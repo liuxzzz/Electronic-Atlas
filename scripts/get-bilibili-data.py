@@ -16,10 +16,11 @@ import os
 from datetime import datetime
 from bilibili_api import user
 import aiohttp
+from ai_model_helper import call_ai_model
 
 # 配置
 TARGET_UID = 1140672573  # 目标UP主的UID
-OUTPUT_DIR = "../public/data"  # 输出目录
+OUTPUT_DIR = "public/data"  # 输出目录
 DELAY_BETWEEN_REQUESTS = 1  # 请求间隔(秒)
 
 async def get_user_info(uid):
@@ -53,7 +54,7 @@ async def get_all_videos(uid):
         while True:
             try:
                 # 获取当前页视频
-                result = await u.get_videos(page=page)
+                result = await u.get_videos(pn=page, ps=30)
                 video_list = result.get('list', {}).get('vlist', [])
                 
                 if not video_list:
@@ -184,6 +185,93 @@ async def main():
         # 保存数据
         print("\n3. 保存数据...")
         success = await save_data(user_info, videos)
+
+
+        # ai 转换数据
+        print("开始转换数据")
+
+
+
+        modal = "deepseek-chat"
+        key = os.getenv("DEEPSEEK_API_KEY")
+        url = "https://api.deepseek.com/chat/completions"
+        config = {
+            "temperature": 0.3,
+            "response_format": {"type": "json_object"}
+        }
+
+        example_input_json= {
+            "bvid": "BV1og411d7rg",
+            "aid": 511784765,
+            "title": "【东盟十国01丨菲律宾】从富甲一方到回天无力，菲律宾做错了什么？",
+            "description": "一键三连推荐给更多朋友！\n\n东盟十国系列回顾：\n【东盟十国 01】菲律宾传送门：BV1og411d7rg\n【东盟十国 02】印尼传送门：BV1QF411K7Lt\n【东盟十国 03】泰国传送门：BV12g41167Gi\n【东盟十国 04】马来西亚传送门：BV1xt4y1E7VC\n【东盟十国 05】文莱传送门：BV1de4y1q799\n【东盟十国 06】东帝汶传送门：BV1VG4y1Z7MW\n【东盟十国 07】老挝传送门：BV1a3411o7vU\n【东盟十国 08】柬埔寨传送门：BV1rs4y1Z7XH\n【东",
+            "duration": "24:08",
+            "play_count": 2751338,
+            "comment_count": 10079,
+            "favorite_count": 0,
+            "coin_count": 0,
+            "created_timestamp": 1653134874,
+            "created_date": "2022-05-21 20:07:54",
+            "pic_url": "http://i1.hdslb.com/bfs/archive/82da927fdd9349a2f91169ed8c1dd2ec6fcece6e.jpg",
+            "type_name": "",
+            "author": "小王Albert",
+            "mid": "1140672573"
+        }
+
+        example_output_json={
+            "countryName": ["菲律宾"],
+            "leader": ["#"],
+            "personName": "#",
+            "organizationName": "#",
+            "name": "【东盟十国01丨菲律宾】从富甲一方到回天无力，菲律宾做错了什么？",
+            "bvid": "BV1og411d7rg",
+            "aid": 511784765,
+            "cover": "82da927fdd9349a2f91169ed8c1dd2ec6fcece6e.jpg",
+            "view": 2751338,
+            "duration": "24分08秒",
+            "pub_date": "2022-05-21",
+            "url": "https://www.bilibili.com/video/BV1og411d7rg",
+            "series": "东盟十国",
+            "episode": "01"
+        }
+
+        system_prompt= f"""
+
+        将输入的json数据按照输出的json格式要求进行转换，并返回转换后的json数据。 
+
+        注意：
+        重要的转换数据就是将title中的国家信息提取出来，并且将title中的国家信息转换为countryName的格式。
+        series字段是系列信息，也需要从title中提取出来。
+
+        EXAMPLE INPUT JSON: \n{example_input_json}
+
+        EXAMPLE JSON OUTPUT: \n{example_output_json}
+        
+        """
+
+        user_prompt= f"这里是输入给你的json数据:\n{videos} "
+
+        messages = [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt}
+        ]
+
+        country_data = await call_ai_model(messages, modal, key, url, config)
+        
+        # country_data 是字典，需要用 ['choices'] 访问
+        print(f"完整响应: {country_data}")
+        
+        # 提取实际的内容
+        if 'choices' in country_data:
+            content = country_data['choices'][0]['message']['content']
+            print(f"AI 返回的 JSON: {content}")
+            
+            # 解析 JSON 字符串
+            result = json.loads(content)
+            # 将结果存入country.json
+            with open(os.path.join(OUTPUT_DIR, 'country.json'), 'w', encoding='utf-8') as f:
+                json.dump(result, f, ensure_ascii=False, indent=2)
+            print(f"解析后的数据: {result}")
         
         if success:
             print("✅ 数据获取和保存完成！")

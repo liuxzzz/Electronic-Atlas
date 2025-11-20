@@ -124,7 +124,7 @@ export default function DataPage() {
             </div>
             <div className='mt-4 md:mt-0'>
               <button
-                onClick={() => (window.location.href = '/admin')}
+                // onClick={() => (window.location.href = '/admin')}
                 className='bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200'
               >
                 更新数据

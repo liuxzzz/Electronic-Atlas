@@ -8,17 +8,14 @@ export default function About() {
         <div className='max-w-6xl mx-auto'>
           <div className='text-center animate-fade-in'>
             <h1 className='text-5xl md:text-7xl font-semibold tracking-tight text-foreground mb-8 leading-tight'>
-              <span className='gradient-text'>关于我们</span>
+              <span className='gradient-text'>关于本站</span>
             </h1>
-            <p className='text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed'>
-              致力于让地理知识变得有趣且易于获取，用理性的视角探索多元化的世界
-            </p>
           </div>
         </div>
       </section>
 
-      {/* 关于王晓 */}
-      <section className='py-24 px-6'>
+      {/* 关于王骁 */}
+      <section className='py-12 px-6'>
         <div className='max-w-6xl mx-auto'>
           <div className='bg-card rounded-2xl border border-border p-8 md:p-12 shadow-sm animate-slide-up'>
             <div className='max-w-4xl mx-auto text-center'>
@@ -38,11 +35,11 @@ export default function About() {
                 </svg>
               </div>
               <h2 className='text-3xl md:text-4xl font-semibold tracking-tight text-foreground mb-8'>
-                关于王晓
+                关于王骁
               </h2>
               <div className='text-lg text-muted-foreground space-y-6 leading-relaxed'>
                 <p>
-                  王晓老师通过电子地图册的形式，完整点亮了世界各个板块，
+                  王骁老师通过电子地图册的形式，完整点亮了世界各个板块，
                   用地理的视角带领大家认识这个多元化的世界。
                 </p>
                 <p>
@@ -91,13 +88,13 @@ export default function About() {
                   </p>
                 </div>
                 <p>
-                  作为一名开发者，我深深被王晓老师传递的理念所感动。
+                  作为一名开发者，我深深被王骁老师传递的理念所感动。
                   在这个信息爆炸的时代，我们需要的不仅仅是更多的信息，
                   而是更好的视角和更深的理解。
                 </p>
                 <p>
                   这个 Electronic Atlas 项目，就是希望通过技术的力量，
-                  将王晓老师的地理知识和理性思维传递给更多的人。
+                  将王骁老师的地理知识和理性思维传递给更多的人。
                   让我们都能够在了解世界的过程中，变得更强。
                 </p>
                 <p>
@@ -111,121 +108,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* 功能特色 */}
-      <section className='py-24 px-6'>
-        <div className='max-w-6xl mx-auto'>
-          <div className='text-center mb-16 animate-fade-in'>
-            <h2 className='text-3xl md:text-4xl font-semibold tracking-tight text-foreground mb-4'>
-              我们的特色
-            </h2>
-            <p className='text-lg text-muted-foreground max-w-2xl mx-auto'>
-              通过现代技术和精心设计，为您打造最佳的地理知识探索体验
-            </p>
-          </div>
 
-          <div className='grid md:grid-cols-2 gap-6 lg:gap-8'>
-            <div className='bg-card rounded-2xl border border-border p-6 lg:p-8 shadow-sm hover:shadow-md transition-all duration-300 animate-slide-up'>
-              <div className='w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6'>
-                <svg
-                  className='w-7 h-7 text-primary'
-                  fill='none'
-                  stroke='currentColor'
-                  viewBox='0 0 24 24'
-                >
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    strokeWidth={1.5}
-                    d='M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z'
-                  />
-                </svg>
-              </div>
-              <h3 className='text-xl font-semibold text-foreground mb-3'>
-                创新技术
-              </h3>
-              <p className='text-muted-foreground leading-relaxed'>
-                采用最新的 React、Next.js 和 TypeScript
-                技术栈，确保应用的性能和可维护性。
-                支持服务器端渲染和静态生成，提供最佳的用户体验。
-              </p>
-            </div>
-
-            <div className='bg-card rounded-2xl border border-border p-6 lg:p-8 shadow-sm hover:shadow-md transition-all duration-300 animate-slide-up'>
-              <div className='w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6'>
-                <svg
-                  className='w-7 h-7 text-primary'
-                  fill='none'
-                  stroke='currentColor'
-                  viewBox='0 0 24 24'
-                >
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    strokeWidth={1.5}
-                    d='M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z'
-                  />
-                </svg>
-              </div>
-              <h3 className='text-xl font-semibold text-foreground mb-3'>
-                用户为中心
-              </h3>
-              <p className='text-muted-foreground leading-relaxed'>
-                我们始终将用户体验放在首位，通过直观的界面设计和流畅的交互，
-                让每个人都能轻松地探索和学习地理知识。
-              </p>
-            </div>
-
-            <div className='bg-card rounded-2xl border border-border p-6 lg:p-8 shadow-sm hover:shadow-md transition-all duration-300 animate-slide-up'>
-              <div className='w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6'>
-                <svg
-                  className='w-7 h-7 text-primary'
-                  fill='none'
-                  stroke='currentColor'
-                  viewBox='0 0 24 24'
-                >
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    strokeWidth={1.5}
-                    d='M13 10V3L4 14h7v7l9-11h-7z'
-                  />
-                </svg>
-              </div>
-              <h3 className='text-xl font-semibold text-foreground mb-3'>
-                高性能
-              </h3>
-              <p className='text-muted-foreground leading-relaxed'>
-                优化的代码结构和智能的数据加载策略，确保应用在各种设备和网络环境下都能快速响应。
-              </p>
-            </div>
-
-            <div className='bg-card rounded-2xl border border-border p-6 lg:p-8 shadow-sm hover:shadow-md transition-all duration-300 animate-slide-up'>
-              <div className='w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6'>
-                <svg
-                  className='w-7 h-7 text-primary'
-                  fill='none'
-                  stroke='currentColor'
-                  viewBox='0 0 24 24'
-                >
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    strokeWidth={1.5}
-                    d='M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9m0 9c-5 0-9-4-9-9s4-9 9-9'
-                  />
-                </svg>
-              </div>
-              <h3 className='text-xl font-semibold text-foreground mb-3'>
-                开源精神
-              </h3>
-              <p className='text-muted-foreground leading-relaxed'>
-                我们相信开源的力量，项目的代码完全开源，欢迎社区的贡献和建议，
-                共同打造更好的地理学习平台。
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* 技术栈 */}
       <section className='py-24 px-6 bg-muted/30'>
@@ -299,15 +182,15 @@ export default function About() {
               </svg>
             </div>
             <h2 className='text-3xl md:text-4xl font-semibold tracking-tight text-foreground mb-6'>
-              联系我们
+              联系我
             </h2>
             <p className='text-lg text-muted-foreground mb-10 max-w-3xl mx-auto leading-relaxed'>
-              有任何问题、建议或合作意向，欢迎随时与我们联系。我们期待听到您的声音！
+              有任何问题、建议或BUG反馈，欢迎随时与我联系。期待听到您的声音！
             </p>
 
             <div className='flex flex-col sm:flex-row gap-4 justify-center items-center'>
               <a
-                href='mailto:contact@electronic-atlas.com'
+                href='mailto:liuhz110805@gmail.com'
                 className='bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-3 px-8 rounded-xl transition-all duration-200 inline-flex items-center gap-2 shadow-sm hover:shadow-md'
               >
                 <svg
@@ -325,26 +208,22 @@ export default function About() {
                 </svg>
                 发送邮件
               </a>
-              <Link
-                href='/map'
-                className='text-muted-foreground hover:text-foreground font-medium py-3 px-8 rounded-xl transition-all duration-200 hover:bg-accent inline-flex items-center gap-2'
-              >
-                开始探索
-                <svg
-                  className='w-4 h-4'
-                  fill='none'
-                  stroke='currentColor'
-                  viewBox='0 0 24 24'
-                >
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    strokeWidth={2}
-                    d='M13 7l5 5-5 5M6 12h12'
-                  />
-                </svg>
-              </Link>
+         
             </div>
+
+            <div className='text-muted-foreground text-sm py-2' >or</div>
+
+            <a
+              href='https://github.com/liuxzzz/Electronic-Atlas/issues/new'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-3 px-8 rounded-xl transition-all duration-200 inline-flex items-center gap-2 shadow-sm hover:shadow-md'
+            >
+              <svg className='w-4 h-4' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4' />
+              </svg>
+              GitHub
+            </a>
           </div>
         </div>
       </section>
